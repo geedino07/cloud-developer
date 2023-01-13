@@ -2,6 +2,7 @@ import { Router, Request, Response } from 'express';
 import { FeedItem } from '../models/FeedItem';
 import { requireAuth } from '../../users/routes/auth.router';
 import * as AWS from '../../../../aws';
+import { PrimaryKey } from 'sequelize-typescript';
 
 const router: Router = Router();
 
@@ -18,6 +19,32 @@ router.get('/', async (req: Request, res: Response) => {
 
 //@TODO
 //Add an endpoint to GET a specific resource by Primary Key
+router.get('/:id/', async (req: Request, res: Response) => {
+    //destruct our path params
+    let { id } = req.params;
+
+    //check to make sure the id is set
+    if( !id ){
+        //respond with an error if id is not set
+        return res.status(400).send(`id is required`);
+    }
+
+    //try to find the specifig resource by primary key
+    const items = await FeedItem.findAndCountAll({order: [['id', 'DESC']]});
+    items.rows.map((item) => {
+            if(item.url) {
+                item.url = AWS.getGetSignedUrl(item.url);
+            }
+    });
+    const idfield = items.rows.filter((FeedItem) => FeedItem.id == Number(id))
+    //respond if id not found 
+    if (idfield && idfield.length === 0){
+        return res.status(404).send(`id is not found`);
+     }
+    //return id with a success status code
+    res.status(200).send(idfield);
+});
+
 
 // update a specific resource
 router.patch('/:id', 
