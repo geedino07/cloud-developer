@@ -4,7 +4,7 @@
 
 The endpoint URL for a running elastic beanstalk deployment: 
 
-1. [URL](https://github.com/udacity/cloud-developer/tree/master/course-02/exercises/udacity-c2-frontend)
+1. [URL](http://image-filter-app-dev22.us-east-1.elasticbeanstalk.com/filteredimage?image_url=https://ichef.bbci.co.uk/news/976/cpsprodpb/6D84/production/_128363082_tinubuobiabubakar_v2_getty_3panel_976x549.jpg)
 
 
 ## Elastic Beanstalk Deployment Screenshot
