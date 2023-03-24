@@ -4,7 +4,7 @@
         {
             "Effect": "Allow",
             "Action": "logs:CreateLogGroup",
-            "Resource": "arn:aws:logs:us-east-1:913036176028:*"
+            "Resource": "arn:aws:logs:us-east-1:123103729071:*"
         },
         {
             "Effect": "Allow",
@@ -13,7 +13,7 @@
                 "logs:PutLogEvents"
             ],
             "Resource": [
-                "arn:aws:logs:us-east-1:913036176028:log-group:/aws/lambda/create-group:*"
+                "arn:aws:logs:us-east-1:123103729071:log-group:/aws/lambda/create-group:*"
             ]
         },
         {
